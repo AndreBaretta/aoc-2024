@@ -6,7 +6,7 @@ const similarities = list1.map(number =>
     number * list2.filter(x => x==number).length
 );
 
-var sum = 0;
+let sum = 0;
 
 similarities.map(similarity =>
     sum += similarity

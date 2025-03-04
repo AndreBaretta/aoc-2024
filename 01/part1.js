@@ -6,11 +6,11 @@ const distances = list1.map((number, index) =>
     Math.abs(number - list2[index])
 );
 
-var sum = 0;
+let sum = 0;
 
 distances.map(distance =>
     sum += distance
 );
 
-console.log(sum);
 // 1879048
+console.log(sum);
