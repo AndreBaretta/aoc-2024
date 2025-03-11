@@ -44,8 +44,25 @@ function getDiagonals(rows){
         }
     }
 
-    console.log(leftDiagonals);
     return [leftDiagonals, rightDiagonals];
+}
+
+function getX(rows){
+    let x = [];
+    let index = 0;
+    for(let i = 1; i < rows.length-1; i++){
+        for(let j = 1; j < rows[i].length-1; j++){
+            x.push(['','']);
+            x[index][0] = x[index][0].concat(rows[i-1][j-1]);
+            x[index][0] = x[index][0].concat(rows[i][j]);
+            x[index][0] = x[index][0].concat(rows[i+1][j+1]);
+            x[index][1] = x[index][1].concat(rows[i-1][j+1]);
+            x[index][1] = x[index][1].concat(rows[i][j]);
+            x[index][1] = x[index][1].concat(rows[i+1][j-1]);
+            index++;
+        }
+    }
+    return x;
 }
 
 export async function getInput(){
@@ -53,7 +70,8 @@ export async function getInput(){
     const rows = input.split('\r\n');
     const columns = getColumns(rows);
     const [leftDiagonals, rightDiagonals] = getDiagonals(rows);
-    return [rows, columns, leftDiagonals, rightDiagonals];
+    const x = getX(rows);
+    return [rows, columns, leftDiagonals, rightDiagonals, x];
 }
 
 
