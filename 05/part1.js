@@ -4,22 +4,13 @@ const [firstPart, secondPart] = await getInput();
 
 const order = [];
 const map = new Map();
-firstPart.map(row => {
-    const first = row[0];
-    const second = row[1];
+firstPart.map(([first, second]) => {
     if(!map.has(first)){
-        const value = [[],[second]];
+        const value = [second];
         map.set(first, value);
     } else {
         const value = map.get(first);
-        value[1].push(second);
-    }
-    if(!map.has(second)){
-        const value = [[first],[]];
-        map.set(second, value);
-    } else {
-        const value = map.get(second);
-        value[0].push(first);
+        value.push(second);
     }
 });
 
@@ -27,7 +18,7 @@ function validateUpdate(row){
     for(let i = 0; i < row.length; i++){
         for(let j = i+1; j < row.length; j++){
             const values = map.get(row[i]);
-            if(!values[1].includes(row[j])) 
+            if(!values.includes(row[j])) 
                 return false;
         }
     }
