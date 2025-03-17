@@ -1,18 +1,6 @@
 import { getInput } from "./input.js";
 
-const [firstPart, secondPart] = await getInput();
-
-const order = [];
-const map = new Map();
-firstPart.map(([first, second]) => {
-    if(!map.has(first)){
-        const value = [second];
-        map.set(first, value);
-    } else {
-        const value = map.get(first);
-        value.push(second);
-    }
-});
+const [map, secondPart] = await getInput();
 
 function validateUpdate(row){
     for(let i = 0; i < row.length; i++){
